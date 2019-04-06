@@ -1,7 +1,11 @@
 from django.conf.urls import url
 
-from . import views
+from .views import (
+    index,
+    posts_home,
+)
 
 urlpatterns = (
-    url(r"", views.posts_home),
+    url(r"^$", index),
+    url(r"^home/$", posts_home),
 )

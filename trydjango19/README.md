@@ -20,6 +20,7 @@ $ python manage.py createsuperuser
 ...
 
 src$ python manage.py startapp posts
+#### install application in settings.py
 #### create Post models
 src$ python manage.py makemigrations
 src$ python manage.py migrate
@@ -31,3 +32,5 @@ src$ python manage.py migrate
 
 src$ touch posts/urls.py
 #### create basic posts-index 'posts_home' function in posts/views.py
+## learning url pattern of django
+
