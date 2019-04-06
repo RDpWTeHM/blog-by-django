@@ -124,3 +124,5 @@ src$ pip install Pillow
 #### 所见即所得 Django Pagedown
 
 
+#### responsive content (markdown) image
+#### -[o] next class video 6

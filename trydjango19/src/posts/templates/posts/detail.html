@@ -25,16 +25,14 @@
 </div>
 
 <div class="row">
-	<div class='col-sm-12 content-markdown col-sm-offset-2'> 
-{{ post.content }}
-	</div>
+	<div class='col-sm-8 content-markdown col-sm-offset-2'>{{ post.content }}</div>
 </div>
 
 <hr/>
 
 <div class="row">
 <div class="col-sm-8 col-sm-offset-2">
-	<a href="{% url 'posts:update' slug=post.slug %}">Edit</a>
+	<a href="{% url 'posts:update' slug=post.slug %}">Edit</a><br/>
 </div>
 </div>
 
