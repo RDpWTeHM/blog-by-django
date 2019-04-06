@@ -7,5 +7,5 @@ from .views import (
 
 urlpatterns = (
     url(r"^$", index, name="list"),
-    url(r"^detail/$", detail, name="detail"),
+    url(r"^(?P<pk>\d+)/$", detail, name="detail"),
 )

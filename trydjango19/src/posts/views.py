@@ -17,8 +17,8 @@ def index(request):
                   context=context)
 
 
-def detail(request):
-    post = get_object_or_404(Post, pk=1)
+def detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
 
     context = {
         "title": "Detail",
