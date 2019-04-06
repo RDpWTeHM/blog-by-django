@@ -43,12 +43,25 @@ src$ touch posts/urls.py
 #### create post page by use django forms.
 #### POST method success, redirect to home page
 
+
 ## update post
 #### update URL and view - no real content
 #### reuse create HTML to 'update'
 
+
 ## User Action Message
 #### django.contrib.messages
 
+
 ## use template inherit
 #### use template 'include' to include message
+
+
+## Static files
+#### change settings file for could use collectstatic
+
+src$ mkdir static
+src$ mkdir ../static_cdn
+src$ python manage.py collectstatic
+
+#### load static files - base.css for example
