@@ -5,6 +5,8 @@ from django.shortcuts import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.contrib import messages
 
+from django.utils import timezone
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import os
@@ -23,7 +25,10 @@ dbg_print = partial(print, file=sys.stderr)
 
 
 def index(request):  # posts list
-    allposts = Post.objects.all()
+    if request.user.is_staff or request.user.is_superuser:
+        allposts = Post.objects.all()
+    else:
+        allposts = Post.objects.active()
     paginator = Paginator(allposts, 5)  # Show 25 contacts per page
 
     page = request.GET.get('page')
@@ -39,6 +44,7 @@ def index(request):  # posts list
     context = {
         'title': "Index",
         'posts_list': qs,
+        'today': timezone.now().date(),
     }
 
     return render(request, "posts/index.html",
@@ -47,6 +53,9 @@ def index(request):  # posts list
 
 def detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    if post.draft or post.publish > timezone.now().date():
+        if not request.user.is_staff or not request.user.is_superuser:
+            raise Http404
 
     context = {
         "title": "Detail",

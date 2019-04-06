@@ -93,4 +93,8 @@ src$ pip install Pillow
 ## 30 share link
 
 
+## Model Manager
+#### add draft, publish-date
+#### create Post Manager - filter draft, publish date to show on list
+
 
