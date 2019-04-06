@@ -71,3 +71,11 @@ src$ python manage.py collectstatic
 #### reference: https://docs.djangoproject.com/en/1.9/topics/pagination/
 
 
+## Media - image
+#### upload image
+#### display image
+#### consider no-image post
+
+
+
+
