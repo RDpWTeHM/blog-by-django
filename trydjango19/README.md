@@ -76,6 +76,13 @@ src$ python manage.py collectstatic
 #### display image
 #### consider no-image post
 
+#### use ImageField instead of FileField(require Pillow)
+src$ pip install Pillow
 
 
-
+## slug
+#### delete old
+- delete `media_cdn/*`
+- delete `migrations/000*.py`
+- delete `db.sqlite3`
+- makemigrations, migrate again 
