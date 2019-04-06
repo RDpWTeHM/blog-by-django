@@ -1,10 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+
+from .models import Post
 
 
 def index(request):
-    return render(request, "index.html")
+    allposts = Post.objects.all()
+
+    context = {
+        'title': "Index",
+        'allposts': allposts,
+    }
+
+    return render(request, "posts/index.html",
+                  context=context)
 
 
-def posts_home(request):
-    return HttpResponse("<h1>Hello World</h1>")
+def detail(request):
+    post = get_object_or_404(Post, pk=1)
+
+    context = {
+        "title": "Detail",
+        "post": post,
+    }
+    return render(request, "posts/detail.html", context=context)

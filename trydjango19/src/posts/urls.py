@@ -2,10 +2,10 @@ from django.conf.urls import url
 
 from .views import (
     index,
-    posts_home,
+    detail,
 )
 
 urlpatterns = (
-    url(r"^$", index),
-    url(r"^home/$", posts_home),
+    url(r"^$", index, name="list"),
+    url(r"^detail/$", detail, name="detail"),
 )

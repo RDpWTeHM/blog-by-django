@@ -34,3 +34,7 @@ src$ touch posts/urls.py
 #### create basic posts-index 'posts_home' function in posts/views.py
 ## learning url pattern of django
 
+## learning render HTML basic
+
+#### render HTML by queryset Post model
+
