@@ -70,7 +70,7 @@ def detail(request, pk):
 
 
 def create(request):
-    postform = PostForm(request.POST or None)
+    postform = PostForm(request.POST or None, request.FILES or None)
 
     if postform.is_valid():
         instance = postform.save(commit=False)
@@ -91,7 +91,8 @@ def create(request):
 def update(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
-    postform = PostForm(request.POST or None, instance=post)
+    postform = PostForm(request.POST or None,
+                        request.FILES or None, instance=post)
 
     if postform.is_valid():
         instance = postform.save(commit=False)

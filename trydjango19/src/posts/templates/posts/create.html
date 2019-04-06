@@ -9,6 +9,7 @@
 		<h1>{{ H1 }}</h1>
 
 		<form action=""
+			  enctype="multipart/form-data"
 		      method="POST">{% csrf_token %}
 
 		{{ form.as_p }}

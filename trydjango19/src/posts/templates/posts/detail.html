@@ -6,6 +6,7 @@
 {% block content %}
 
 <div class='col-sm-8 col-sm-offset-2'>
+	<img src='{{ post.image.url }}' class='img-responsive'>
 	<h1>{{ post.title }} <small>{{ post.timestamp }}</small></h1>
 
 	{{ post.content|linebreaks }}<br/>
