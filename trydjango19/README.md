@@ -49,3 +49,6 @@ src$ touch posts/urls.py
 
 ## User Action Message
 #### django.contrib.messages
+
+## use template inherit
+#### use template 'include' to include message
