@@ -42,3 +42,7 @@ src$ touch posts/urls.py
 
 #### create post page by use django forms.
 #### POST method success, redirect to home page
+
+## update post
+#### update URL and view - no real content
+####

@@ -4,7 +4,7 @@
 	<title>{{ title }}|POSTS</title>
 </head>
 <body>
-	<h1>{{ post.title }}</h1>
+	<h1>{{ H1 }}</h1>
 
 
 id: {{ post.id }}<br/>
@@ -14,6 +14,6 @@ timestamp: {{ post.timestamp }}<br/>
 updated: {{ post.updated }}<br/>
 <br/>
 
-<a href="{% url 'posts:update' pk=post.pk %}">Edit</a>
+<a href="{% url 'posts:list' %}">Home</a>
 </body>
 </html>

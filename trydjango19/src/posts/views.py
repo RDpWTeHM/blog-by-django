@@ -56,3 +56,14 @@ def create(request):
     }
 
     return render(request, 'posts/create.html', context=context)
+
+
+def update(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    context = {
+        "title": "Update",
+        "H1": "Update {}".format(post.title),
+        "post": post,
+    }
+    return render(request, "posts/update.html", context=context)
