@@ -11,7 +11,8 @@
 		<h1>{{ title }}</h1>
 	</div>
 
-	{% for obj in allposts %}
+	{% for obj in posts_list %}
+	{{ obj.full_name|upper }}<br />
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="thumbnail">
@@ -26,6 +27,23 @@
 		</div>
 	</div>
 	{% endfor %}
+
+
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if posts_list.has_previous %}
+	            <a href="?page={{ posts_list.previous_page_number }}">previous</a>
+	        {% endif %}
+
+	        <span class="current">
+	            Page {{ posts_list.number }} of {{ posts_list.paginator.num_pages }}.
+	        </span>
+
+	        {% if posts_list.has_next %}
+	            <a href="?page={{ posts_list.next_page_number }}">next</a>
+	        {% endif %}
+	    </span>
+	</div>
 
 </div>
 

@@ -65,3 +65,9 @@ src$ mkdir ../static_cdn
 src$ python manage.py collectstatic
 
 #### load static files - base.css for example
+
+
+## Pagination
+#### reference: https://docs.djangoproject.com/en/1.9/topics/pagination/
+
+

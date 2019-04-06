@@ -5,6 +5,8 @@ from django.shortcuts import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.contrib import messages
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 import os
 import sys
 from functools import partial
@@ -19,13 +21,38 @@ from .forms import PostForm
 ###########
 dbg_print = partial(print, file=sys.stderr)
 
+'''
+page = request.GET.get('page')
+try:
+    contacts = paginator.page(page)
+except PageNotAnInteger:
+    # If page is not an integer, deliver first page.
+    contacts = paginator.page(1)
+except EmptyPage:
+    # If page is out of range (e.g. 9999), deliver last page of results.
+    contacts = paginator.page(paginator.num_pages)
 
-def index(request):
+return render(request, 'list.html', {'contacts': contacts})
+'''
+
+
+def index(request):  # posts list
     allposts = Post.objects.all()
+    paginator = Paginator(allposts, 5)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        qs = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        qs = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        qs = paginator.page(paginator.num_pages)
 
     context = {
         'title': "Index",
-        'allposts': allposts,
+        'posts_list': qs,
     }
 
     return render(request, "posts/index.html",
