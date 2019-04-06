@@ -5,15 +5,18 @@
 {% endblock title %}
 
 {% block content %}
-	<h1>{{ H1 }}</h1>
+	<div class='col-sm-8 col-sm-offset-2'>
+		<h1>{{ H1 }}</h1>
 
-<form action=""
-      method="POST">{% csrf_token %}
+		<form action=""
+		      method="POST">{% csrf_token %}
 
-{{ form.as_p }}
+		{{ form.as_p }}
 
-<input type="submit" value="Create Post">
+		<input type="submit" value="Create Post">
 
-</form>
+		</form>
+
+	</div>
 
 {% endblock content %}
