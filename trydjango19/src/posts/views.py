@@ -45,8 +45,8 @@ def index(request):  # posts list
                   context=context)
 
 
-def detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
 
     context = {
         "title": "Detail",
@@ -74,8 +74,8 @@ def create(request):
     return render(request, 'posts/create.html', context=context)
 
 
-def update(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def update(request, slug):
+    post = get_object_or_404(Post, slug=slug)
 
     postform = PostForm(request.POST or None,
                         request.FILES or None, instance=post)
@@ -95,8 +95,8 @@ def update(request, pk):
     return render(request, "posts/create.html", context=context)
 
 
-def delete(request, pk=None):
-    post = get_object_or_404(Post, pk=pk)
+def delete(request, slug=None):
+    post = get_object_or_404(Post, slug=slug)
     post.delete()
     messages.success(request, "Successful Delete")
     return redirect("posts:list")

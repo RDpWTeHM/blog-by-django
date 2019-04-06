@@ -86,3 +86,11 @@ src$ pip install Pillow
 - delete `migrations/000*.py`
 - delete `db.sqlite3`
 - makemigrations, migrate again 
+
+#### update to slug!!!!!!!!
+
+
+## 30 share link
+
+
+

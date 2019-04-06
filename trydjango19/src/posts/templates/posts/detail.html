@@ -10,11 +10,12 @@
 	<img src='{{ post.image.url }}' class='img-responsive'>
 	{% endif %}
 	<h1>{{ post.title }} <small>{{ post.timestamp }}</small></h1>
+	<p>Author: {{ post.user }}</p>
 
 	{{ post.content|linebreaks }}<br/>
 	<br/>
 
-	<a href="{% url 'posts:update' pk=post.pk %}">Edit</a>
+	<a href="{% url 'posts:update' slug=post.slug %}">Edit</a>
 
 </div>
 
