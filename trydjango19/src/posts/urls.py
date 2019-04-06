@@ -12,8 +12,8 @@ from .views import (
 # app = "posts"
 urlpatterns = (
     url(r"^$", index, name="list"),
+    url(r"^create/$", create, name="create"),  # bug with slug
     url(r"^(?P<slug>[\w-]+)/$", detail, name="detail"),
-    url(r"^create/$", create, name="create"),
     url(r"^(?P<slug>[\w-]+)/edit/$", update, name="update"),
     url(r"^(?P<slug>[\w-]+)/delete/$", delete, name="delete"),
 )

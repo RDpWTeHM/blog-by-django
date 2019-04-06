@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, Http404
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import HttpResponseRedirect
@@ -56,10 +56,15 @@ def detail(request, slug):
 
 
 def create(request):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+    # if not request.user.is_authenticated():
+        # raise Http404
     postform = PostForm(request.POST or None, request.FILES or None)
 
     if postform.is_valid():
         instance = postform.save(commit=False)
+        instance.user = request.user
         dbg_print(postform.cleaned_data.get("title"))
         instance.save()
         messages.success(request, "Successful Create")
@@ -75,6 +80,9 @@ def create(request):
 
 
 def update(request, slug):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+
     post = get_object_or_404(Post, slug=slug)
 
     postform = PostForm(request.POST or None,
@@ -96,6 +104,9 @@ def update(request, slug):
 
 
 def delete(request, slug=None):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+
     post = get_object_or_404(Post, slug=slug)
     post.delete()
     messages.success(request, "Successful Delete")

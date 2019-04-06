@@ -10,8 +10,11 @@
 	<img src='{{ post.image.url }}' class='img-responsive'>
 	{% endif %}
 	<h1>{{ post.title }} <small>{{ post.timestamp }}</small></h1>
-	<p>Author: {{ post.user }}</p>
-
+	{% if post.user.get_full_name %}
+	<p>Author: {{ post.user.get_full_name }}</p>
+	{% else %}
+	<p>Author: N/A</p>
+	{% endif %}
 	{{ post.content|linebreaks }}<br/>
 	<br/>
 
