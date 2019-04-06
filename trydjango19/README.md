@@ -19,4 +19,6 @@ $ python manage.py migrate
 $ python manage.py createsuperuser
 ...
 
-$ 
+src$ python manage.py startapp posts
+src$ python manage.py makemigrations
+src$ python manage.py migrate
