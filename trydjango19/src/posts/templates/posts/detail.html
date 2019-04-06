@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{ title }}|POSTS</title>
-</head>
-<body>
-{% if messages %}
-	<ul class='messages'>
-		{% for message in messages %}
-			<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-		{% endfor %}
-	</ul>
-{% endif %}
+{% extends "base.html" %}
+	{% block title %}
+		{{ title }}|POSTS</title>
+	{% endblock title %}
+
+{% block content %}
 
 	<h1>{{ post.title }}</h1>
 
 
-id: {{ post.id }}<br/>
-pk: {{ post.pk }}<br/>
-content: {{ post.content }}<br/>
-timestamp: {{ post.timestamp }}<br/>
-updated: {{ post.updated }}<br/>
-<br/>
+	id: {{ post.id }}<br/>
+	pk: {{ post.pk }}<br/>
+	content: {{ post.content }}<br/>
+	timestamp: {{ post.timestamp }}<br/>
+	updated: {{ post.updated }}<br/>
+	<br/>
 
-<a href="{% url 'posts:update' pk=post.pk %}">Edit</a>
-</body>
-</html>
+	<a href="{% url 'posts:update' pk=post.pk %}">Edit</a>
+
+{% endblock content %}

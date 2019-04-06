@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Index</title>
-</head>
-<body>
+{% extends	"base.html" %}
+
+{% block title %}
+	Posts List|Posts
+{% endblock title %}
+
+{% block content %}
 	<h1>{{ title }} is Working</h1>
 
-{% for obj in allposts %}
+	{% for obj in allposts %}
+		<a href='{{ obj.get_absolute_url }}'>title: {{ obj.title }}</a><br/>
+		id: {{ obj.id }}<br/>
+		pk: {{ obj.pk }}<br/>
+		content: {{ obj.content }}<br/>
+		timestamp: {{ obj.timestamp }}<br/>
+		updated: {{ obj.updated }}<br/>
+		<br/>
+	{% endfor %}
 
-
-<a href='{{ obj.get_absolute_url }}'>title: {{ obj.title }}</a><br/>
-id: {{ obj.id }}<br/>
-pk: {{ obj.pk }}<br/>
-content: {{ obj.content }}<br/>
-timestamp: {{ obj.timestamp }}<br/>
-updated: {{ obj.updated }}<br/>
-<br/>
-
-{% endfor %}
-</body>
-</html>
+{% endblock content %}
