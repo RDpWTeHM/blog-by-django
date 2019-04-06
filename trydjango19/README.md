@@ -45,4 +45,4 @@ src$ touch posts/urls.py
 
 ## update post
 #### update URL and view - no real content
-####
+#### reuse create HTML to 'update'

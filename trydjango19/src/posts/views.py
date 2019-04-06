@@ -47,7 +47,7 @@ def create(request):
         instance = postform.save(commit=False)
         dbg_print(postform.cleaned_data.get("title"))
         instance.save()
-        return HttpResponseRedirect("/posts/")
+        return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
         'title': "Create",
@@ -61,9 +61,17 @@ def create(request):
 def update(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
+    postform = PostForm(request.POST or None, instance=post)
+
+    if postform.is_valid():
+        instance = postform.save(commit=False)
+        # dbg_print(postform.cleaned_data.get("title"))
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
+
     context = {
         "title": "Update",
         "H1": "Update {}".format(post.title),
-        "post": post,
+        "form": postform,
     }
-    return render(request, "posts/update.html", context=context)
+    return render(request, "posts/create.html", context=context)
