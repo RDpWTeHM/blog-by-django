@@ -113,9 +113,7 @@ src$ pip install Pillow
 
 ```html
 <div class="row">
-	<div class='col-sm-12 content-markdown col-sm-offset-2'> 
-{{ post.content }}
-	</div>
+	<div class='col-sm-12 content-markdown col-sm-offset-2'>{{ post.content }}</div>
 </div>
 ```
 
@@ -123,6 +121,6 @@ src$ pip install Pillow
 > 否则 markdown 在转换的时候，因为空格过多，有一个规则是空格 4 个左右就会把改行当作 'code'
 
 #### 转换的关键代码 `var markedContent = marked(content);`
-
+#### 所见即所得 Django Pagedown
 
 

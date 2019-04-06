@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # third-party
+    'pagedown',
+
     # develop
     'posts.apps.PostsConfig',
 ]
