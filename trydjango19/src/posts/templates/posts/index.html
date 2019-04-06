@@ -8,7 +8,8 @@
 
 {% for obj in allposts %}
 
-title: {{ obj.title }}<br/>
+
+<a href='{{ obj.get_absolute_url }}'>title: {{ obj.title }}</a><br/>
 id: {{ obj.id }}<br/>
 pk: {{ obj.pk }}<br/>
 content: {{ obj.content }}<br/>

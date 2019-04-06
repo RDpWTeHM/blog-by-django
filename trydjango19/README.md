@@ -38,3 +38,4 @@ src$ touch posts/urls.py
 
 #### render HTML by queryset Post model
 
+#### posts list -to-> post detail, use django reverse (resolve URL)

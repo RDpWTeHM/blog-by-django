@@ -5,6 +5,8 @@ from .views import (
     detail,
 )
 
+
+# app = "posts"
 urlpatterns = (
     url(r"^$", index, name="list"),
     url(r"^(?P<pk>\d+)/$", detail, name="detail"),
