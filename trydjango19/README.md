@@ -98,3 +98,5 @@ src$ pip install Pillow
 #### create Post Manager - filter draft, publish date to show on list
 
 
+## django.db.models.Q
+#### basic search function

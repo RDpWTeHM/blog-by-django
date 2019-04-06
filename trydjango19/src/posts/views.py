@@ -9,6 +9,8 @@ from django.utils import timezone
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from django.db.models import Q
+
 import os
 import sys
 from functools import partial
@@ -29,9 +31,19 @@ def index(request):  # posts list
         allposts = Post.objects.all()
     else:
         allposts = Post.objects.active()
-    paginator = Paginator(allposts, 5)  # Show 25 contacts per page
 
-    page = request.GET.get('page')
+    if request.GET.get('q', None):
+        key = request.GET.get('q')
+        allposts = allposts.filter(
+            Q(title__icontains=key) |
+            Q(content__icontains=key) |
+            Q(user__first_name__icontains=key) |
+            Q(user__last_name__icontains=key)
+        ).distinct()
+
+    paginator = Paginator(allposts, 5)  # Show 25 contacts per page
+    page_request_var = "page"
+    page = request.GET.get(page_request_var)
     try:
         qs = paginator.page(page)
     except PageNotAnInteger:
@@ -44,6 +56,7 @@ def index(request):  # posts list
     context = {
         'title': "Index",
         'posts_list': qs,
+        'page_request_var': page_request_var,
         'today': timezone.now().date(),
     }
 
