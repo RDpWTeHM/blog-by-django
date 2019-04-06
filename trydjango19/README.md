@@ -20,5 +20,8 @@ $ python manage.py createsuperuser
 ...
 
 src$ python manage.py startapp posts
+#### create Post models
 src$ python manage.py makemigrations
 src$ python manage.py migrate
+
+#### bring the database(models) to administration

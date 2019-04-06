@@ -1,6 +1,8 @@
 bin/
 include/
 lib/
+# share for ipython
+share/
 pip-selfcheck.json
 
 # Byte-compiled / optimized / DLL files
