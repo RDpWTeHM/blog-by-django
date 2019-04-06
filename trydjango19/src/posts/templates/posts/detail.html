@@ -5,6 +5,7 @@
 
 {% block content %}
 
+<div class="row">
 <div class='col-sm-8 col-sm-offset-2'>
 	{% if post.image %}
 	<img src='{{ post.image.url }}' class='img-responsive'>
@@ -14,16 +15,27 @@
 		{% if post.draft %}<span style="color:red;">Draft</span>{% endif %}
 		{{ post.publish }}</small>
 	</h1>
+
 	{% if post.user.get_full_name %}
-	<p>Author: {{ post.user.get_full_name }}</p>
+		<p>Author: {{ post.user.get_full_name }}</p>
 	{% else %}
-	<p>Author: N/A</p>
+		<p>Author: N/A</p>
 	{% endif %}
-	{{ post.content|linebreaks }}<br/>
-	<br/>
+</div>
+</div>
 
+<div class="row">
+	<div class='col-sm-12 content-markdown col-sm-offset-2'> 
+{{ post.content }}
+	</div>
+</div>
+
+<hr/>
+
+<div class="row">
+<div class="col-sm-8 col-sm-offset-2">
 	<a href="{% url 'posts:update' slug=post.slug %}">Edit</a>
-
+</div>
 </div>
 
 {% endblock content %}

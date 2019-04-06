@@ -100,3 +100,29 @@ src$ pip install Pillow
 
 ## django.db.models.Q
 #### basic search function
+
+
+## trydjango19 --to--> blog
+
+- for Advancing the Blog
+
+
+
+## render content by Markdown
+#### include jquery by http://code.jquery.com/ (click 'minified')
+
+```html
+<div class="row">
+	<div class='col-sm-12 content-markdown col-sm-offset-2'> 
+{{ post.content }}
+	</div>
+</div>
+```
+
+> 注意： `{{ post.content }}` 需要贴紧左侧，
+> 否则 markdown 在转换的时候，因为空格过多，有一个规则是空格 4 个左右就会把改行当作 'code'
+
+#### 转换的关键代码 `var markedContent = marked(content);`
+
+
+
