@@ -5,6 +5,7 @@ from .views import (
     detail,
     create,
     update,
+    delete,
 )
 
 
@@ -14,4 +15,5 @@ urlpatterns = (
     url(r"^(?P<pk>\d+)/$", detail, name="detail"),
     url(r"^create/$", create, name="create"),
     url(r"^(?P<pk>\d+)/edit/$", update, name="update"),
+    url(r"^(?P<pk>\d+)/delete/$", delete, name="delete"),
 )

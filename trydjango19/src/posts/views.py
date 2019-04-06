@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.contrib import messages
 
 import os
@@ -78,3 +79,10 @@ def update(request, pk):
         "form": postform,
     }
     return render(request, "posts/create.html", context=context)
+
+
+def delete(request, pk=None):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    messages.success(request, "Successful Delete")
+    return redirect("posts:list")
