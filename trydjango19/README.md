@@ -27,5 +27,7 @@ src$ python manage.py migrate
 #### bring the database(models) to administration
 #### create PostModelAdmin for more Granularity customization admin
 
+## learning "what is CRUD?"
 
-
+src$ touch posts/urls.py
+#### create basic posts-index 'posts_home' function in posts/views.py
