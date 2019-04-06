@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import HttpResponseRedirect
+from django.contrib import messages
 
 import os
 import sys
@@ -47,6 +48,7 @@ def create(request):
         instance = postform.save(commit=False)
         dbg_print(postform.cleaned_data.get("title"))
         instance.save()
+        messages.success(request, "Successful Create")
         return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
@@ -67,6 +69,7 @@ def update(request, pk):
         instance = postform.save(commit=False)
         # dbg_print(postform.cleaned_data.get("title"))
         instance.save()
+        messages.success(request, "Successful Saved")
         return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
