@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+</head>
+<body>
+	<h1>{{ H1 }}</h1>
+
+<form action="{% url 'posts:create' %}"
+      method="POST">{% csrf_token %}
+
+{{ form.as_p }}
+
+<input type="submit" value="Create Post">
+
+</form>
+
+</body>
+</html>

@@ -39,3 +39,6 @@ src$ touch posts/urls.py
 #### render HTML by queryset Post model
 
 #### posts list -to-> post detail, use django reverse (resolve URL)
+
+#### create post page by use django forms.
+#### POST method success, redirect to home page

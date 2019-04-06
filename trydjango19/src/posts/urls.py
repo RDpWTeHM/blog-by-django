@@ -3,6 +3,7 @@ from django.conf.urls import url
 from .views import (
     index,
     detail,
+    create,
 )
 
 
@@ -10,4 +11,5 @@ from .views import (
 urlpatterns = (
     url(r"^$", index, name="list"),
     url(r"^(?P<pk>\d+)/$", detail, name="detail"),
+    url(r"^create/$", create, name="create"),
 )
