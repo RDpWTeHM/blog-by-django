@@ -25,3 +25,7 @@ src$ python manage.py makemigrations
 src$ python manage.py migrate
 
 #### bring the database(models) to administration
+#### create PostModelAdmin for more Granularity customization admin
+
+
+
