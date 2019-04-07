@@ -5,7 +5,7 @@ from .models import Comment
 
 
 class CommentModelAdmin(admin.ModelAdmin):
-    list_display = ["user",
+    list_display = ["pk", "user",
                     "content_type", "object_id", "parent",
                     "timestamp", ]
     # list_display_links = ["updated"]

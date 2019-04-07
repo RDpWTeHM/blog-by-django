@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+	{% block title %}
+		{{ title }} | {{ block.super }}
+	{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+	<div class='col-sm-8 col-sm-offset-2'>
+		<div id="comments">
+			<p class='lead'>Comments</p>
+			<hr/>
+
+			<div class="" id="{{ comment.id }}"><!-- TODO: id for anchor after comment -->
+				<div class='comment-post-content'>
+					<p>{{ comment.content }}</p>
+					<br/>						
+					<footer>
+						via <b>{{ comment.user.username }}</b> on <i>{{ comment.timestamp|timesince}}</i> ago | <button type="button" class="btn btn-default"
+							onclick="displayReplyForm({{ comment.id }});"><i class="fa fa-comment"></i></button>
+					</footer>
+				</div>
+				<hr/>
+
+				<div class='comment-reply'>
+					<div class="comment-comment-content">
+						<blockquote>
+							{% for child_comment in comment.children %}
+							<div class="" id="{{ child_comment.id }}"><!-- TODO: id for anchor -->
+								<p>{{ child_comment.content }}</p>
+								<br/>
+								<footer>
+									via <b>{{ child_comment.user.username }}</b>|<i>{{ child_comment.timestamp|timesince}}</i> ago
+								</footer>
+							</div>
+							<hr/>
+							{% endfor %}
+						</blockquote>
+					</div>
+
+					<div class="comment-comment-form">
+						<form method="POST" action=""
+							  class=""
+							  id="child_reply_form_{{ comment.id }}" style="display:none">{% csrf_token %}
+							{{ comment_form|crispy }}
+							<input type="hidden" name="parent_id" value="{{ comment.id }}">
+							<input type="submit" value="Reply"
+								   class="btn btn-default">
+						</form>
+					</div>
+				</div>
+
+			</div>
+			<hr/>
+		</div>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+
+function displayReplyForm(index){
+	_id = 'child_reply_form_' + index;
+	var lastStatus = document.getElementById(_id).style.display;
+	// console.log(lastStatus);
+	if (lastStatus == 'none'){
+		document.getElementById(_id).style.display='';
+	}else{
+		document.getElementById(_id).style.display='none';
+	}
+}
+
+</script>
+
+{% endblock content %}
+

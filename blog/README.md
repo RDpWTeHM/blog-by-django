@@ -157,4 +157,11 @@ src$ pip install Pillow
 - only two level comment for now
 - use comment.id - a simple way to identification which comment call the same on-click function
 - hidden reply to comment form but display when client 'reply' icon
+    - Video 17 have the hidden solution
+
+
+
+## Comment CURD
+#### only add 'parent' as single page(think as detail of comment(post)) for now
+
 
