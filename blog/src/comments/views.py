@@ -8,6 +8,7 @@ from django.http import HttpResponse
 
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.decorators import login_required
 
 # import os
 # import sys
@@ -29,11 +30,8 @@ def get_initail4comment(instance: 'Comment') -> dict:
     }
 
 
+# @login_required(login_url='/login/')
 def comment_thread(request, pk=None):
-    # if not request.user.is_staff or not request.user.is_superuser:
-    if not request.user.is_active:
-        raise Http404("login first!")
-
     obj = get_object_or_404(Comment, pk=pk)
     if not obj.is_parent:
         obj = obj.parent
@@ -41,9 +39,8 @@ def comment_thread(request, pk=None):
     comment_form = CommentForm(
         request.POST or None,
         initial=get_initail4comment(obj))
-    if comment_form.is_valid():
+    if comment_form.is_valid() and request.user.is_authenticated():
         # dbg_print(comment_form.cleaned_data)
-
         c_type = comment_form.cleaned_data.get("content_type")
         content_type = ContentType.objects.get(model=c_type)
         obj_id = comment_form.cleaned_data.get("object_id")
@@ -78,6 +75,7 @@ def comment_thread(request, pk=None):
     return render(request, "comment_thread.html", context=context)
 
 
+@login_required(login_url='/login/')
 def comment_delete(request, pk):
     try:
         obj = Comment.objects.get(pk=pk)

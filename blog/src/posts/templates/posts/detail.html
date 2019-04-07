@@ -52,28 +52,35 @@
 			<hr/>
 
 			<div class='post-reply'>
+				{% if request.user.is_authenticated %}
 				<form method="POST" action="">{% csrf_token %}
 					{{ comment_form|crispy }}
 
 					<input type="submit" value="Post Comment"
 						   class="btn btn-default">
 				</form>
+				{% else %}
+					<p>You need to login to comment</p>
+				{% endif %}
 
 				<br/>
 				<hr/>
 
 				<blockquote>
 				{% for comment in post.comments %}
-				{# {% for comment in comments %} #}
 					<div class="" id="{{ comment.id }}"><!-- TODO: id for anchor after comment -->
 						<div class='comment-post-content'>
 							<p>{{ comment.content }}</p>
 							<br/>						
 							<footer>
-								via <b>{{ comment.user.username }}</b> on <i>{{ comment.timestamp|timesince}}</i> ago | <button type="button" class="btn btn-default"
+								via <b>{{ comment.user.username }}</b> on <i>{{ comment.timestamp|timesince}}</i> ago 
+								{% if request.user.is_authenticated %}
+								| <button type="button" class="btn btn-default"
 									onclick="displayReplyForm({{ comment.id }});">
 										<i class="fa fa-comment"></i>
-									</button> | <a href="{{ comment.get_absolute_url }}">Thread</a>
+									</button>
+								{% endif %}
+								| <a href="{{ comment.get_absolute_url }}">Thread</a>
 							</footer>
 						</div>
 						<div class='comment-reply'>
