@@ -11,8 +11,14 @@
 	<div class="jumbotron">
 		<h1>{{ title }}</h1>
 		<form action="" method="GET">
-			<input type="text" name="q" placeholder="Search posts">
-			<input type="submit" value="Search">
+			<div class="input-group">
+				<input type="text" name="q" placeholder="Search posts"
+					   class="form-control">
+				<span class='input-group-btn'>
+					<input type="submit" value="Search"
+						   class="btn btn-default">
+				</span>
+			</div>
 		</form>
 	</div>
 
