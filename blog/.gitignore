@@ -5,6 +5,9 @@ lib/
 share/
 pip-selfcheck.json
 
+### for project going
+db*.sqlite*
+
 #### for project ####
 static_cdn/
 media_cdn/

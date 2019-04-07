@@ -35,16 +35,23 @@
 <div class="row">
 	<div class='col-sm-8 col-sm-offset-2'>
 		<!-- {# <div class="post-detail-item">{{ post.content }}</div> #} -->
-<div class="content-markdown">
-<div id="content">
+		<div class="content-markdown">
 {{ post.content }}
-</div>
+		</div>
+
 		<hr/>
 		<br/>
-<div id="comments">
-{{ post.comment_set.all }}
-</div>
-</div>
+		<div id="comments">
+			<p class='lead'>Comments</p>
+			{% for comment in comments %}
+				<div class="">
+					{{ comment.content }}<br/>
+					via <b>{{ comment.user.username }}</b> on <i>{{ comment.timestamp|timesince}}</i>
+					<hr/>
+
+				</div>		
+			{% endfor %}
+		</div>
 
 	</div>
 </div>

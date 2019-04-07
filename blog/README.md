@@ -125,4 +125,10 @@ src$ pip install Pillow
 
 
 #### responsive content (markdown) image
-#### -[o] next class video 6
+
+
+## Comments
+#### generic foreign key
+- the object id in Comment(Model) is the foreign key model(object) id -- it mapping to article
+
+
