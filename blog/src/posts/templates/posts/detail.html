@@ -25,15 +25,28 @@
 </div>
 
 <div class="row">
-	<div class='col-sm-8 content-markdown col-sm-offset-2'>{{ post.content }}</div>
+<div class="col-sm-8 col-sm-offset-2">
+	<a href="{% url 'posts:update' slug=post.slug %}">Edit</a><br/>
+</div>
 </div>
 
 <hr/>
 
 <div class="row">
-<div class="col-sm-8 col-sm-offset-2">
-	<a href="{% url 'posts:update' slug=post.slug %}">Edit</a><br/>
+	<div class='col-sm-8 col-sm-offset-2'>
+		<!-- {# <div class="post-detail-item">{{ post.content }}</div> #} -->
+<div class="content-markdown">
+<div id="content">
+{{ post.content }}
 </div>
+		<hr/>
+		<br/>
+<div id="comments">
+{{ post.comment_set.all }}
+</div>
+</div>
+
+	</div>
 </div>
 
 {% endblock content %}
