@@ -4,6 +4,7 @@
 
 from django.shortcuts import render, get_object_or_404, Http404
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
@@ -33,6 +34,8 @@ def comment_thread(request, pk=None):
         raise Http404("login first!")
 
     obj = get_object_or_404(Comment, pk=pk)
+    if not obj.is_parent:
+        obj = obj.parent
 
     comment_form = CommentForm(
         request.POST or None,
@@ -75,7 +78,15 @@ def comment_thread(request, pk=None):
 
 
 def comment_delete(request, pk):
-    obj = get_object_or_404(Comment, pk=pk)
+    try:
+        obj = Comment.objects.get(pk=pk)
+    except Comment.DoesNotExist as err:
+        raise Http404(err)
+
+    if obj.user != request.user:  # only can delete own-self
+        response = HttpResponse("<h1>You have not permission to do this!</h1>")
+        response.status_code = 403
+        return response
 
     if request.method == 'POST':
         parent_obj_url = obj.content_object.get_absolute_url()

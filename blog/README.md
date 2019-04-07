@@ -170,4 +170,5 @@ src$ pip install Pillow
 
 
 #### comment delete function
-
+#### delete comment - user verify
+#### delete the comment which reply to comment

@@ -20,7 +20,11 @@
 					<br/>						
 					<footer>
 						via <b>{{ comment.user.username }}</b> on <i>{{ comment.timestamp|timesince}}</i> ago | <button type="button" class="btn btn-default"
-							onclick="displayReplyForm({{ comment.id }});"><i class="fa fa-comment"></i></button>
+							onclick="displayReplyForm({{ comment.id }});"><i class="fa fa-comment"></i></button> | 
+						{% if request.user == comment.user %}
+							<a href='{% url "comments:delete" pk=comment.pk %}'
+							   class="btn btn-default">Delete</a>
+						{% endif %}
 					</footer>
 				</div>
 				<hr/>
@@ -33,7 +37,11 @@
 								<p>{{ child_comment.content }}</p>
 								<br/>
 								<footer>
-									via <b>{{ child_comment.user.username }}</b>|<i>{{ child_comment.timestamp|timesince}}</i> ago
+									via <b>{{ child_comment.user.username }}</b>|<i>{{ child_comment.timestamp|timesince}}</i> ago | 
+									{% if request.user == comment.user %}
+										<a href='{{ child_comment.get_delete_url }}'
+										   class="btn btn-default">Delete</a>
+									{% endif %}
 								</footer>
 							</div>
 							<hr/>

@@ -37,7 +37,7 @@ class Comment(models.Model):
         ordering = ['-timestamp']
 
     def __str__(self):
-        return str(self.user.username)
+        return "{} | {}".format(self.pk, self.user.username)
 
     def __repr__(self):
         return "({}) {!r}".format(id(self), self.user.username)
@@ -54,3 +54,6 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse("comments:thread", kwargs={"pk": self.pk})
+
+    def get_delete_url(self):
+        return reverse("comments:delete", kwargs={"pk": self.pk})

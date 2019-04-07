@@ -18,7 +18,7 @@
 				<br/>
 				<p>{{ object.content }}"?</p>
 				<input type="submit" name="" value="Confirm" class="btn btn-warning">
-				<a href="{{ object.get_absolute_url }}" class="btn btn-default">Cancel</a>
+				<a href="{{ object.content_object.get_absolute_url }}" class="btn btn-default">Cancel</a>
 			</form>
 
 		</div>
