@@ -8,18 +8,17 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 
-import os
-import sys
-from functools import partial
+# import os
+# import sys
 
 from .models import Comment
 from .forms import CommentForm
 
 
-###########
-## utils ##
-###########
-dbg_print = partial(print, file=sys.stderr)
+######################
+#  utility function  #
+######################
+from utils import dbg_print
 
 
 def get_initail4comment(instance: 'Comment') -> dict:

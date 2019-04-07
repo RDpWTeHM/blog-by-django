@@ -10,14 +10,13 @@ from django.utils import timezone
 
 import os
 import sys
-from functools import partial
 
 from posts.models import Post
 
 from posts.forms import PostForm
 
 
-###########
-## utils ##
-###########
-dbg_print = partial(print, file=sys.stderr)
+######################
+#  utility function  #
+######################
+from utils import dbg_print
