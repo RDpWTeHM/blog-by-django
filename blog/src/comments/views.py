@@ -72,3 +72,20 @@ def comment_thread(request, pk=None):
         'comment_form': form,
     }
     return render(request, "comment_thread.html", context=context)
+
+
+def comment_delete(request, pk):
+    obj = get_object_or_404(Comment, pk=pk)
+
+    if request.method == 'POST':
+        parent_obj_url = obj.content_object.get_absolute_url()
+        obj.delete()
+        messages.success(request, "This has been delete")
+        return HttpResponseRedirect(parent_obj_url)
+
+    context = {
+        'title': "Confirm Delete",
+        'object': obj,
+    }
+
+    return render(request, "confirm_delete.html", context=context)

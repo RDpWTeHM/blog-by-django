@@ -165,3 +165,9 @@ src$ pip install Pillow
 #### only add 'parent' as single page(think as detail of comment(post)) for now
 
 
+## Expect Read Time
+#### not do it, but it's worth to do it. - good for practice `pre_save` and 'date'!
+
+
+#### comment delete function
+
