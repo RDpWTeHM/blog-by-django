@@ -4,15 +4,17 @@ from django.contrib import admin
 from .models import Comment
 
 
-# class CommentModelAdmin(admin.ModelAdmin):
-#     list_display = ["user", "post", "timestamp", ]
-#     # list_display_links = ["updated"]
-#     list_filter = ["user", "timestamp"]
-#     search_fields = ["user", "post"]
+class CommentModelAdmin(admin.ModelAdmin):
+    list_display = ["user",
+                    "content_type", "object_id", "parent",
+                    "timestamp", ]
+    # list_display_links = ["updated"]
+    list_filter = ["user", "timestamp"]
+    search_fields = ["user", ]
 
-#     class Meta:
-#         model = Comment
+    class Meta:
+        model = Comment
 
 
-# admin.site.register(Comment, CommentModelAdmin)
-admin.site.register(Comment)
+admin.site.register(Comment, CommentModelAdmin)
+# admin.site.register(Comment)

@@ -1,5 +1,8 @@
 # posts/views/list.py
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+
 from . import *
 
 

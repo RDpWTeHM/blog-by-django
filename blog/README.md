@@ -152,5 +152,9 @@ src$ pip install Pillow
 
 #### re-structure views.py --to--> `views/`
 
-
+#### reply to comment - 'parent' Foreign Key in comment
+- add parent foreign key to comment
+- only two level comment for now
+- use comment.id - a simple way to identification which comment call the same on-click function
+- hidden reply to comment form but display when client 'reply' icon
 

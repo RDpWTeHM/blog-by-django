@@ -10,8 +10,11 @@ class CommentManager(models.Manager):
         content_type = ContentType.objects.get_for_model(instance.__class__)
         obj_id = instance.id
         qs = super(CommentManager, self).filter(
-            content_type=content_type, object_id=obj_id)
+            content_type=content_type, object_id=obj_id).filter(parent=None)
         return qs
+
+    def all(self):
+        return super(CommentManager, self).filter(parent=None)
 
 
 class Comment(models.Model):
@@ -22,13 +25,28 @@ class Comment(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey("content_type", 'object_id')
 
+    parent = models.ForeignKey("self", null=True, blank=True)
+
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     objects = CommentManager()
+
+    class Meta:
+        ordering = ['-timestamp']
 
     def __str__(self):
         return str(self.user.username)
 
     def __repr__(self):
         return "({}) {!r}".format(id(self), self.user.username)
+
+    def children(self):  # replies
+        qs = Comment.objects.filter(parent=self)
+        return qs
+
+    @property
+    def is_parent(self):
+        if self.parent is not None:
+            return False
+        return True
