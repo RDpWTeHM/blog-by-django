@@ -22,17 +22,15 @@ def login_view(request):
                   {"form": form, "title": "Login", })
 
 
-def register_view(request):
-    form = UserLoginForm(request.POST or None)
-    if form.is_valid():
-        username = form.cleaned_data.get("username")
-        password = form.cleaned_data.get("password")
+def logout_view(request):
+    logout(request)
 
+    form = UserLoginForm(request.POST or None)
     return render(request, "login.html",
                   {"form": form, "title": "Login", })
 
 
-def logout_view(request):
+def register_view(request):
     form = UserLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")
