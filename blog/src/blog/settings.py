@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # develop
     'posts.apps.PostsConfig',
     'comments.apps.CommentsConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
