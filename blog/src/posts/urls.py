@@ -1,12 +1,10 @@
 from django.conf.urls import url
 
-from .views import (
-    index,
-    detail,
-    create,
-    update,
-    delete,
-)
+from .views.create import create
+from .views.update import update
+from .views.list import index
+from .views.detail import detail
+from .views.delete import delete
 
 
 # app = "posts"
