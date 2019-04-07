@@ -58,7 +58,7 @@ class Post(models.Model):
     class Meta:
         ordering = ["-timestamp", '-updated']
 
-    def get_markdown(self):
+    def get_abstract_from_mk(self):
         content = self.content
         return mark_safe(markdown_deux.markdown(content[:120] + "......"))
 
