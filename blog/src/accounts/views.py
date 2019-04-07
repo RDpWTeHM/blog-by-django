@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 
 from django.contrib.auth import (
@@ -20,7 +20,8 @@ def login_view(request):
         password = form.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         login(request, user)
-        # redirect
+        return redirect("/posts/")
+
     context = {
         "form": form,
         "title": "Login",

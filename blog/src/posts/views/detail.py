@@ -57,7 +57,7 @@ def comment_handler(request, instance: 'Post'):
                 parent_obj = parent_qs.first()
             else:
                 raise ValueError("parent_qs doesn't exist")
-        except ValueError:
+        except TypeError:
             parent_obj = None
 
         new_comment, created = Comment.objects.get_or_create(
@@ -82,7 +82,7 @@ def detail(request, slug):
 
     if request.method == 'POST':
         '''support comment'''
-        if not request.user.is_staff or not request.user.is_superuser:
+        if not request.user.is_active:
             raise Http404("login first!")
         else:
             return comment_handler(request, instance=post)

@@ -30,7 +30,8 @@ def get_initail4comment(instance: 'Comment') -> dict:
 
 
 def comment_thread(request, pk=None):
-    if not request.user.is_staff or not request.user.is_superuser:
+    # if not request.user.is_staff or not request.user.is_superuser:
+    if not request.user.is_active:
         raise Http404("login first!")
 
     obj = get_object_or_404(Comment, pk=pk)
