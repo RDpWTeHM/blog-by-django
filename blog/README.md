@@ -131,4 +131,13 @@ src$ pip install Pillow
 #### generic foreign key
 - the object id in Comment(Model) is the foreign key model(object) id -- it mapping to article
 
+#### make code short on views and templates
+
+- Post model import Comment model and use .filter_by_instance function.
+- Attention: due to :point_up_2: that Comment model can't not import Post model(in properly).
+- notice the `instance.__class__` trick to use!
+- Flexibly use <Model>Manager (it ) 这是使用组合模式(`objects`) 而非继承的一个实例！.
+- 使用 `@property` 将 comments 当作 Post 的 “内容/属性” 而非 “方法/功能”。
+- 在 views 中获取 comments 和在 template 获取 comments 另一种方法在注释中体现。
+
 

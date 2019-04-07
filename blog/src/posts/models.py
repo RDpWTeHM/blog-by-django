@@ -13,6 +13,8 @@ from django.utils.safestring import mark_safe
 
 import markdown_deux
 
+from comments.models import Comment
+
 
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
@@ -61,6 +63,12 @@ class Post(models.Model):
     def get_abstract_from_mk(self):
         content = self.content
         return mark_safe(markdown_deux.markdown(content[:120] + "......"))
+
+    @property
+    def comments(self):
+        instance = self
+        qs = Comment.objects.filter_by_instance(instance)
+        return qs
 
 
 def create_slug(instance, new_slug=None):

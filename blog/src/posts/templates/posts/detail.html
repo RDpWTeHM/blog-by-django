@@ -43,7 +43,8 @@
 		<br/>
 		<div id="comments">
 			<p class='lead'>Comments</p>
-			{% for comment in comments %}
+			{% for comment in post.comments %}
+			{# {% for comment in comments %} #}
 				<div class="">
 					{{ comment.content }}<br/>
 					via <b>{{ comment.user.username }}</b> on <i>{{ comment.timestamp|timesince}}</i>
