@@ -143,3 +143,11 @@ src$ pip install Pillow
 #### Blockquotes for Comments
 
 
+## Submit Comment at Detail Page
+#### create comment form(comments/forms.py)
+#### best thing - initial Foreign thing at the GET before the POST
+#### forms.py - CharField(label='' ) for load crispy_forms_tags to better comment form
+
+
+
+

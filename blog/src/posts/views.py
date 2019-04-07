@@ -6,10 +6,10 @@ from django.shortcuts import redirect
 from django.contrib import messages
 
 from django.utils import timezone
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 from django.db.models import Q
+
+from django.contrib.contenttypes.models import ContentType
 
 import os
 import sys
@@ -18,8 +18,8 @@ from functools import partial
 from .models import Post
 
 from .forms import PostForm
-# from django.contrib.contenttypes.models import ContentType
 from comments.models import Comment
+from comments.forms import CommentForm
 
 
 ###########
@@ -72,10 +72,33 @@ def detail(request, slug):
         if not request.user.is_staff or not request.user.is_superuser:
             raise Http404
 
+    # best thing here - initial Foreign thing at the get before the post
+    initial4comment = {
+        'content_type': post.get_content_type,
+        'object_id': post.id,
+    }
+    comment_form = CommentForm(request.POST or None, initial=initial4comment)
+    if comment_form.is_valid():
+        dbg_print(comment_form.cleaned_data)
+        c_type = comment_form.cleaned_data.get("content_type")
+        content_type = ContentType.objects.get(model=c_type)
+        obj_id = comment_form.cleaned_data.get("object_id")
+        content_data = comment_form.cleaned_data.get("content")
+
+        _, created = Comment.objects.get_or_create(
+            user=request.user,
+            content_type=content_type,
+            object_id=obj_id,
+            content=content_data,
+        )
+        if created:
+            dbg_print("It works!")
+
     context = {
         "title": "Detail",
         "post": post,
         # 'comments': Comment.objects.filter_by_instance(post),
+        'comment_form': comment_form,
     }
     return render(request, "posts/detail.html", context=context)
 
