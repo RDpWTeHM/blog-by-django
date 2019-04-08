@@ -39,13 +39,13 @@ def _get_latest_source(checkout_source_folder, source_folder):
     else:
         run('git clone %s %s' % (REPO_URL, checkout_source_folder))
     current_commit = local("git log -n 1 --format=%H", capture=True)
-    run('cd %s && git rest --hard %s' % (checkout_source_folder, current_commit))
+    run('cd %s && git reset --hard %s' % (checkout_source_folder, current_commit))
 
     run("cp -fr %s/blog/src/* %s" % (checkout_source_folder, source_folder))
 
 
 def _update_settings(source_folder, site_name):
-    settings_path = source_folder + 'blog/settings.py'
+    settings_path = source_folder + '/blog/settings.py'
     # DEBUG flag  #######################################
     sed(settings_path, "DEBUG = True", "DEBUG = False")
     # ALLOWED_HOSTS  ###################################
