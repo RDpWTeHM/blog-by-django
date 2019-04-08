@@ -37,9 +37,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
 
-    form = UserLoginForm(request.POST or None)
-    return render(request, "login.html",
-                  {"form": form, "title": "Login", })
+    return redirect("/posts/")
 
 
 def register_view(request):
