@@ -1,0 +1,23 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn-{{ SITENAME }}.socket
+After=network.target
+
+[Service]
+PIDFil=/run/gunicorn_{{ SITENAME }}/pid
+User=deploy
+Group=deploy
+RuntimeDirectory=gunicorn_{{ SITENAME }}
+WorkingDirectory=/home/deploy/sites/{{ SITENAME }}/source
+ExecStart=/home/deploy/sites/{{ SITENAME }}/virtualenv/bin/gunicorn \
+          --pid /run/gunicorn_{{ SITENAME }}/pid \
+          --bind unix:/tmp/{{ SITENAME }}.socket \
+          blog.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+
+WantedBy=multi-user.target
+

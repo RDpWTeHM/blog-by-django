@@ -1,0 +1,19 @@
+server {
+    listen 8080;
+    server_name {{ SITENAME }};
+    
+    location /static {
+        alias /home/deploy/sites/{{ SITENAME }}/static_cdn;
+    }
+
+    location /media {
+        alias /home/deploy/sites/{{ SITENAME }}/media_cdn;
+    }
+
+    
+    location / {
+        proxy_set_header Host $host;
+        proxy_pass http://unix:/tmp/{{ SITENAME }}.socket;
+    }
+}
+

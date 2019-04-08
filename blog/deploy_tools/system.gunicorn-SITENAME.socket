@@ -1,0 +1,10 @@
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/tmp/{{ SITENAME }}.socket
+
+[Install]
+
+WantedBy=sockets.target
+
