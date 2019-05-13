@@ -22,6 +22,8 @@ from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.shortcuts import redirect
+
 from accounts.views import (
     login_view,
     register_view,
@@ -32,6 +34,7 @@ from accounts.views import (
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^$', lambda request: redirect('/posts/')),
     url(r'^posts/', include('posts.urls', namespace='posts')),
     url(r'^comments/', include('comments.urls', namespace='comments')),
 
