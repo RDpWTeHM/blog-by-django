@@ -2,7 +2,8 @@
 import os
 import sys
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.template import Template, Context
@@ -97,6 +98,6 @@ def upload_reprint(request):
         for chunk in upload_file.chunks():
             save_file_path.write(chunk)
         save_file_path.close()
-        return HttpResponse("upload finish")
+        return redirect(reverse("reprint:reprint_list"))
 
     raise Http404('<h1>Bad Request</h1>')
