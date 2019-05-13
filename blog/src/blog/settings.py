@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
     'comments.apps.CommentsConfig',
     'accounts.apps.AccountsConfig',
+
+    'reprint.apps.ReprintConfig',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -142,4 +144,4 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
-
+SITE_PAGES_DIRECTORY = os.path.join(BASE_DIR, 'pages')

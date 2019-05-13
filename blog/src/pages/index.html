@@ -1,0 +1,8 @@
+{% block js %}
+<script language="javascript" type="text/javascript"> 
+// 以下方式直接跳转
+window.location.href='{% url 'reprint:reprint_list' %}';
+// 以下方式定时跳转
+setTimeout("javascript:location.href='{% url 'reprint:reprint_list' %}'", 5000); 
+</script>
+{% endblock js %}

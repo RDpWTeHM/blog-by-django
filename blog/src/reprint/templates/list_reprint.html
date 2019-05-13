@@ -1,0 +1,29 @@
+{# list_reprint.html #}
+{% extends 'base.html' %}
+
+{% block title %}Reprints{% endblock title %}
+
+{% block content %}
+	<div class="jumbotron">
+		<div class="container">
+				<h1>Reprints</h1>
+		</div>
+	</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8">
+			<ul class="list-group list-group-flush">
+			{% for filename in filenames %}
+				<li class="list-group-item">
+					<a href="{% url 'reprint:reprint' filename %}">
+						{{ filename }}
+					</a>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

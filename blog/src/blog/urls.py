@@ -44,6 +44,11 @@ urlpatterns = [
     url(r"^register/$", register_view, name="register"),
 ]
 
+
+urlpatterns += [
+    url(r'^reprint/', include('reprint.urls', namespace='reprint')),
+]
+
 if settings.DEBUG:
     urlpatterns += static(
         settings.STATIC_URL, document_root=settings.STATIC_ROOT)
