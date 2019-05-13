@@ -3,7 +3,6 @@ import os
 import sys
 
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.template import Template, Context
@@ -83,7 +82,7 @@ def reprint_list(request):
                   {"filenames": filenames})
 
 
-@login_required(login_url=reverse('login'))
+@login_required(login_url='/login/')
 def upload_reprint(request):
     if request.user.username != 'joseph':  # only me
         raise Http404("<h1>Sorry, no permission</h1>")
@@ -104,6 +103,6 @@ def upload_reprint(request):
         for chunk in upload_file.chunks():
             save_file_path.write(chunk)
         save_file_path.close()
-        return redirect(reverse("reprint:reprint_list"))
+        return redirect("/reprint/")
 
     raise Http404('<h1>Bad Request</h1>')
