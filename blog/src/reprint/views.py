@@ -9,6 +9,8 @@ from django.http import Http404, HttpResponse
 from django.template import Template, Context
 from django.utils._os import safe_join
 
+from django.contrib.auth.decorators import login_required
+
 
 def testbase(request):
     return render(request, 'test.html', {})
@@ -81,7 +83,11 @@ def reprint_list(request):
                   {"filenames": filenames})
 
 
+@login_required(login_url=reverse('login'))
 def upload_reprint(request):
+    if request.user.username != 'joseph':  # only me
+        raise Http404("<h1>Sorry, no permission</h1>")
+
     if request.method == 'GET':
         return render(request, 'reprint/upload.html', {})
 

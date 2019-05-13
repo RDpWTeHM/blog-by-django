@@ -27,6 +27,7 @@
 
 	<hr/>
 
+    {% if request.user.username == 'joseph' %}
 	<div class="row">
         <form class="form-inline"
                 enctype="multipart/form-data"
@@ -44,6 +45,7 @@
                     type="submit" name="btn_upload" value="上传">
         </form>
 	</div>
+    {% endif %}
 </div>
 
 {% endblock content %}
