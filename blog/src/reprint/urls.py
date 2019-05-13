@@ -7,7 +7,8 @@ from django.http import HttpResponse
 # from .views import testbase
 from .views import (
     page,
-    reprint_list, reprint
+    reprint_list, reprint,
+    upload_reprint,
 )
 
 
@@ -17,6 +18,9 @@ urlpatterns = [
     url(r'^$', page, name='index'),
 
     url(r"^reprint/$", reprint_list, name='reprint_list'),
+
+    url(r"^reprint/upload/$", upload_reprint, name='reprint_upload'),
+
     url(r"^reprint/(?P<filename>[\s\w-]+)", reprint, name="reprint"),
 
     url(r'^(?P<slug>[\w-]+)/$', page, name='page'),

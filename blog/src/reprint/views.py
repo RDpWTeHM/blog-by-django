@@ -78,3 +78,25 @@ def reprint_list(request):
 
     return render(request, "list_reprint.html",
                   {"filenames": filenames})
+
+
+def upload_reprint(request):
+    if request.method == 'GET':
+        return render(request, 'reprint/upload.html', {})
+
+    elif request.method == "POST":
+        upload_file = request.FILES.get('upload_file', None)
+        if not upload_file:
+            raise Http404("<h1>Upload Error</h1>")
+        if not upload_file.name.endswith('.html'):
+            raise Http404("<h1>Support *.html file only</h1>")
+
+        _path = safe_join(settings.SITE_PAGES_DIRECTORY, 'reprint')
+        save_file_path = open(os.path.join(_path, upload_file.name), 'wb+')
+
+        for chunk in upload_file.chunks():
+            save_file_path.write(chunk)
+        save_file_path.close()
+        return HttpResponse("upload finish")
+
+    raise Http404('<h1>Bad Request</h1>')
